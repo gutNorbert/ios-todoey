@@ -15,6 +15,7 @@
 		B629CF88201CE2D5008CB2A7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B629CF86201CE2D5008CB2A7 /* LaunchScreen.storyboard */; };
 		B65725CA2024A360000F01C2 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65725C92024A360000F01C2 /* Item.swift */; };
 		B65725CC2024A36D000F01C2 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65725CB2024A36D000F01C2 /* Category.swift */; };
+		B677F738202899D30050806A /* SwipeTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B677F737202899D30050806A /* SwipeTableVC.swift */; };
 		B6FC39E7202362EF00DDD187 /* CategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FC39E6202362EF00DDD187 /* CategoryVC.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,7 @@
 		B629CF89201CE2D5008CB2A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B65725C92024A360000F01C2 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		B65725CB2024A36D000F01C2 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		B677F737202899D30050806A /* SwipeTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTableVC.swift; sourceTree = "<group>"; };
 		B6FC39E6202362EF00DDD187 /* CategoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -100,6 +102,7 @@
 			children = (
 				B629CF7F201CE2D5008CB2A7 /* TodoListVC.swift */,
 				B6FC39E6202362EF00DDD187 /* CategoryVC.swift */,
+				B677F737202899D30050806A /* SwipeTableVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -221,13 +224,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Todoey-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DCF7A047142F85A92B21CCA2 /* [CP] Embed Pods Frameworks */ = {
@@ -236,9 +242,18 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Todoey/Pods-Todoey-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwipeCellKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -256,6 +271,7 @@
 				B629CF80201CE2D5008CB2A7 /* TodoListVC.swift in Sources */,
 				B6FC39E7202362EF00DDD187 /* CategoryVC.swift in Sources */,
 				B629CF7E201CE2D5008CB2A7 /* AppDelegate.swift in Sources */,
+				B677F738202899D30050806A /* SwipeTableVC.swift in Sources */,
 				B65725CC2024A36D000F01C2 /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

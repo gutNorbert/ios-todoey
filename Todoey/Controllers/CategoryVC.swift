@@ -8,8 +8,10 @@
 
 import UIKit
 import RealmSwift
+import ChameleonFramework
 
-class CategoryVC: UITableViewController {
+class CategoryVC: SwipeTableVC{
+    
     
     let realm = try! Realm()
     
@@ -20,6 +22,8 @@ class CategoryVC: UITableViewController {
         
         loadCategories()
         
+        tableView.rowHeight = 80.0
+        tableView.separatorStyle = .none
     }
     
     //MARK: - TableView Datasource Methods
@@ -31,13 +35,20 @@ class CategoryVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath)
-        
-        cell.textLabel?.text = categories?[indexPath.row].name ?? "No Categories Added Yet"
+        if let category = categories?[indexPath.row] {
+            guard let categoryColor = UIColor(hexString: category.color) else { fatalError() }
+            
+            cell.textLabel?.text = category.name
+            
+            cell.backgroundColor = categoryColor
+            
+            cell.textLabel?.textColor = ContrastColorOf(categoryColor, returnFlat: true)
+        }
         
         return cell
-        
     }
     
     
@@ -78,6 +89,18 @@ class CategoryVC: UITableViewController {
         
     }
     
+    //MARK: Delete Data From Swipe
+    override func updateModel(at indexPath: IndexPath) {
+        if let categoryForDeletion = categories?[indexPath.row]{
+            do{
+                try self.realm.write {
+                    self.realm.delete(categoryForDeletion)
+                }
+            } catch {
+                print("Error deleting category")
+            }
+        }
+    }
     
     //MARK: - Add New Categories
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
@@ -90,6 +113,7 @@ class CategoryVC: UITableViewController {
             
             let newCategory = Category()
             newCategory.name = textField.text!
+            newCategory.color = UIColor.randomFlat.hexValue()
             
             self.save(category: newCategory)
             
